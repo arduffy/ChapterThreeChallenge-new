@@ -34,6 +34,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private int mCurrentIndex = 0;
 
+    //trying to commit the whole file
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
