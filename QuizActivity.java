@@ -33,6 +33,8 @@ public class QuizActivity extends AppCompatActivity {
     private boolean[] mQuestionsAnswered = new boolean[mQuestionBank.length];
 
     private int mCurrentIndex = 0;
+    private int correct;
+    private int incorrect;
 
     //trying to commit the whole file
 
@@ -139,15 +141,27 @@ public class QuizActivity extends AppCompatActivity {
 
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
+            correct = (correct + 1);
         } else {
             messageResId = R.string.incorrect_toast;
+            incorrect = (incorrect + 1);
         }
 
-        mQuestionsAnswered[mCurrentIndex]=true;
+        mQuestionsAnswered[mCurrentIndex] = true;
         mTrueButton.setEnabled(false);
         mFalseButton.setEnabled(false);
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT)
                 .show();
+
+        checkPercent();
     }
+
+    private void checkPercent() {
+        if (mQuestionBank.length == correct + incorrect) {
+            int percent_correct = (correct *100) / mQuestionBank.length;
+            Toast.makeText(this, this.getString(R.string.score_toast,percent_correct), Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
